@@ -1,4 +1,4 @@
-import {User, Video, Channel} from "../models/GeneralModel.js";
+import {User, Video, Channel} from "../models/generalModel.js";
 
 function findAllUsers(req, res) {
   User.findAll().then((result) => res.json(result));
@@ -110,7 +110,6 @@ async function updateVideo(req, res) {
       return res.status(404).json({ error: 'Vídeo não encontrado' });
     }
   
-    // Atualize os campos desejados
     videoToUpdate.title = title;
     videoToUpdate.description = description;
     videoToUpdate.thumb = thumb;
@@ -133,7 +132,6 @@ async function updateChannel(req, res) {
       return res.status(404).json({ error: 'Canal não encontrado' });
     }
   
-    // Atualize os campos desejados
     channelToUpdate.name = name;
     channelToUpdate.description = description;
     channelToUpdate.cover = cover;

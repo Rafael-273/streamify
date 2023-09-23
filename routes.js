@@ -10,7 +10,7 @@ routes.get("/", (req, res) => {
   return res.json({ name: "Ciclano Fulano" });
 });
 
-routes.get("/videos", findAllVideos); // Rota para buscar vídeos
-routes.post('/addvideos', addVideo);    // Rota para adicionar vídeos
+routes.get("/videos", findAllVideos);
+routes.post('/addvideos', addVideo);
 
 export { routes as default };
