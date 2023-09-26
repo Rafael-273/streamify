@@ -1,4 +1,4 @@
-const { DataTypes, Sequelize } = require('sequelize');
+import { DataTypes, Sequelize } from 'sequelize';
 
 const sequelize = new Sequelize({
   dialect: 'mysql',

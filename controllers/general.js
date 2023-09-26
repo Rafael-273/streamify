@@ -1,4 +1,4 @@
-import {User, Video, Channel} from "./models/generalModel.js";
+import { User, Video, Channel } from "../models/generalModel.js";
 
 function findAllUsers(req, res) {
   User.findAll().then((result) => res.json(result));

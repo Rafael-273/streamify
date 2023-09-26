@@ -1,9 +1,9 @@
 import express from "express";
 import routes from "./routes.js";
-import { Sequelize } from "sequelize"; // Importe Sequelize diretamente
+import { Sequelize } from "sequelize";
 
 const app = express();
-const sequelize = new Sequelize("mysql://username:password@localhost:3306/database_name"); // Substitua com sua configuração
+const sequelize = new Sequelize("mysql://root:5456@localhost:3306/video_platform");
 
 app.use(express.json());
 app.use("/", routes);
@@ -11,7 +11,7 @@ app.use("/", routes);
 sequelize
   .sync()
   .then(() => {
-    console.log(`Banco de dados conectado: ${process.env.DB_NAME}`);
+    console.log(`Banco de dados conectado`);
     app.listen(3000, () => {
       console.log("Servidor iniciado na porta 3000");
     });

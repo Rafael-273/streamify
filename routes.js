@@ -1,5 +1,5 @@
 import express from "express";
-import generalControllers from "./src/controllers/general.js";
+import generalControllers from "./controllers/general.js";
 
 const { videoController } = generalControllers;
 const { findAllVideos, addVideo, findVideo, updateVideo, deleteVideo } = videoController;
