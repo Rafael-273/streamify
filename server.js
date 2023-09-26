@@ -12,8 +12,8 @@ sequelize
   .sync()
   .then(() => {
     console.log(`Banco de dados conectado`);
-    app.listen(3000, () => {
-      console.log("Servidor iniciado na porta 3000");
+    app.listen(3001, () => {
+      console.log("Servidor iniciado na porta 3001");
     });
   })
   .catch((error) => {
