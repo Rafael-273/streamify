@@ -1,6 +1,9 @@
 import React from 'react';
 import './home.css'
-import minhaImagem from '../assets/background.png';
+import banner from '../assets/banner.jpg';
+import { thumbs } from '../assets/thumbs/thumbs.js'
+import { covers } from '../assets/covers/covers.js'
+import Footer from './footer.js';
 
 function Home() {
   return (
@@ -11,9 +14,9 @@ function Home() {
         <div className="grid_banner">
           <div></div>
           <div className="content">
-            <h1 className="movieTitle">Canal do Rafa</h1>
+            <h1 className="movieTitle">Streamify</h1>
             <p className="descriptionBanner description">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+            Você está prestes a entrar em um mundo de vídeos incríveis e conteúdo fascinante. O Streamify é a plataforma definitiva de vídeos que oferece uma experiência de entretenimento como nenhuma outra. Aqui, você pode explorar, descobrir e compartilhar vídeos dos mais variados tipos, tudo em um só lugar.
             </p>
 
             <div className="buttons">
@@ -28,8 +31,95 @@ function Home() {
           <div></div>
         </div>
         <div className="banner--fadeLeft"></div>
-        <img src={minhaImagem} className="image img_url" alt="Banner" />
+        <img src={banner} className="image img_url" alt="Banner" />
       </div>
+
+      <div class="videos">
+        <div style={{ display: 'flex'}}>
+          <h1 class="title_row" style={{ color: '#FF0000' }}>Videos</h1><h1 class="title_row" style={{ color: 'aliceblue' }}>em Alta</h1>
+        </div>
+        <div class="videos_all">
+            <div name="movie1" class="movie">
+              <a href="#">
+                <img src={thumbs.thumb1}/>
+              </a>
+            </div>
+            <div name="movie1" class="movie">
+              <a href="#">
+                <img src={thumbs.thumb2}/>
+              </a>
+            </div>
+            <div name="movie1" class="movie">
+              <a href="#">
+                <img src={thumbs.thumb3}/>
+              </a>
+            </div>
+            <div name="movie1" class="movie">
+              <a href="#">
+                <img src={thumbs.thumb4}/>
+              </a>
+            </div>
+            <div name="movie1" class="movie">
+              <a href="#">
+                <img src={thumbs.thumb5}/>
+              </a>
+            </div>
+            <div name="movie1" class="movie">
+              <a href="#">
+                <img src={thumbs.thumb6}/>
+              </a>
+            </div>
+            <div name="movie1" class="movie">
+              <a href="#">
+                <img src={thumbs.thumb7}/>
+              </a>
+            </div>
+            <div name="movie1" class="movie">
+              <a href="#">
+                <img src={thumbs.thumb8}/>
+              </a>
+            </div>
+        </div>
+      </div>
+
+      <div class="videos">
+        <div style={{ display: 'flex'}}>
+          <h1 class="title_row" style={{ color: '#FF0000' }}>Canais</h1><h1 class="title_row" style={{ color: 'aliceblue' }}>Recomendados</h1>
+        </div>
+        <div class="covers_all">
+            <div name="cover1" class="cover">
+              <a href="#">
+                <img src={covers.cover1}/>
+              </a>
+            </div>
+            <div name="cover1" class="cover">
+              <a href="#">
+                <img src={covers.cover2}/>
+              </a>
+            </div>
+            <div name="cover1" class="cover">
+              <a href="#">
+                <img src={covers.cover3}/>
+              </a>
+            </div>
+            <div name="cover1" class="cover">
+              <a href="#">
+                <img src={covers.cover4}/>
+              </a>
+            </div>
+            <div name="cover1" class="cover">
+              <a href="#">
+                <img src={covers.cover5}/>
+              </a>
+            </div>
+            <div name="cover1" class="cover">
+              <a href="#">
+                <img src={covers.cover6}/>
+              </a>
+            </div>
+        </div>
+      </div>
+      <Footer/>
     </section>
   );
 }

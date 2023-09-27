@@ -1,12 +1,13 @@
 import React from 'react';
 import './menu.css'
+import logo from '../assets/logo.png';
 
 function Menu() {
   return (
     <>
       <div className="nav" id="nav">
         <a href="/">
-          <img src="" alt="" className="nav__logo" />
+          <img src={logo} alt="" className="nav__logo" />
         </a>
       </div>
       <div>
@@ -18,7 +19,7 @@ function Menu() {
             <a href="/movies">Canais</a>
           </li>
           <li>
-            <a href="/favorites">Sobre Nós</a>
+            <a href="/favorites">Vídeos</a>
           </li>
           <form id="search-form" method="GET" action="/search">
             <div className="search">
