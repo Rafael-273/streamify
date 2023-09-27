@@ -50,7 +50,12 @@ function addUser(req, res) {
     email,
     photo,
     telephone,
-  }).then((result) => res.json(result));
+  })
+    .then((result) => res.status(201).json(result))
+    .catch((error) => {
+      console.error('Erro ao criar o usuário:', error);
+      res.status(500).json({ error: 'Erro interno do servidor' });
+    });
 }
 
 function addVideo(req, res) {

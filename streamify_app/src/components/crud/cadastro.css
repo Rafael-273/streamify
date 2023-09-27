@@ -15,6 +15,14 @@
     border: 0;
 }
 
+.text {
+    margin-top: 10px;
+    width: 100%;
+    padding: 15px;
+    border-radius: 6px;
+    border: 0;
+}
+
 #description {
     margin-top: 10px;
     width: 100%;

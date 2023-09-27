@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // No
 import Home from './components/home.js';
 import Menu from './components/menu.js';
 import AddVideo from './components/crud/create_video.js';
+import AddChannel from './components/crud/create_channel.js';
+import AddUser from './components/crud/create_user.js';
 import './App.css';
 
 function App() {
@@ -14,6 +16,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/addVideo" element={<AddVideo />} />
+            <Route path="/addChannel" element={<AddChannel />} />
+            <Route path="/addUser" element={<AddUser />} />
           </Routes>
         </header>
       </div>

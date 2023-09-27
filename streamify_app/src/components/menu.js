@@ -13,7 +13,7 @@ function Menu() {
       <div>
         <ul className="menu_list">
           <li>
-            <a href="/home">Início</a>
+            <a href="/">Início</a>
           </li>
           <li>
             <a href="/movies">Canais</a>

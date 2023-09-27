@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './cadastro.css';
+import axios from 'axios';
 
 function AddVideo() {
   const [formData, setFormData] = useState({
@@ -7,7 +8,7 @@ function AddVideo() {
     description: '',
     thumb: null,
     media_file: null,
-    selectedChannel: '', // Adicione o estado para o canal selecionado
+    selectedChannel: '',
   });
 
   const handleInputChange = (e) => {
@@ -26,10 +27,28 @@ function AddVideo() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Envie os dados do formulário para onde você precisa (por exemplo, um servidor).
-    console.log('Form Data:', formData);
+  
+    try {
+      // Crie um objeto FormData para enviar os dados do formulário, incluindo arquivos
+      const formDataToSend = new FormData();
+      formDataToSend.append('title', formData.title);
+      formDataToSend.append('description', formData.description);
+      formDataToSend.append('thumb', formData.thumb);
+      formDataToSend.append('selectedChannel', formData.selectedChannel);
+      formDataToSend.append('media_file', formData.media_file);
+  
+      // Envie a solicitação POST para o servidor
+      const response = await axios.post('/api/videos', formDataToSend);
+  
+      if (response.status === 201) {
+        console.log('Vídeo salvo com sucesso!');
+        // Redirecione para a página de destino após o sucesso (por exemplo, a página inicial)
+      }
+    } catch (error) {
+      console.error('Erro ao salvar o vídeo:', error);
+    }
   };
 
   return (
