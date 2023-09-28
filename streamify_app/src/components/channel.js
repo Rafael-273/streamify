@@ -4,7 +4,7 @@ import './home.css';
 import axios from 'axios';
 import Footer from './footer.js';
 
-function Channel() {
+function Channel() {  
   const { id } = useParams(); // Obtém o ID do canal da URL
   const [channelData, setChannelData] = useState(null);
   const [channelVideos, setChannelVideos] = useState([]);

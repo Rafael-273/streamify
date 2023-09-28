@@ -1,8 +1,15 @@
 import React from 'react';
 import './menu.css'
 import logo from '../assets/logo.png';
+import { useLocation } from 'react-router-dom';
 
 function Menu() {
+  const location = useLocation();
+  const isPlayPage = location.pathname.startsWith('/play/');
+
+  if (isPlayPage) {
+    return null;
+  }
   return (
     <>
       <div className="nav" id="nav">
