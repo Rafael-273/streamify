@@ -10,6 +10,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.16.0",
+    "video.js": "^8.5.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -37,6 +38,8 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.23.0",
+    "@babel/preset-react": "^7.22.15",
     "react-scripts": "^5.0.1"
   }
 }

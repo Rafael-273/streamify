@@ -4,8 +4,38 @@ import banner from '../assets/banner.jpg';
 import { thumbs } from '../assets/thumbs/thumbs.js'
 import { covers } from '../assets/covers/covers.js'
 import Footer from './footer.js';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function Home() {
+  const [videos, setVideos] = useState([]);
+  const [channelCovers, setChannelCovers] = useState([]);
+
+  useEffect(() => {
+    async function fetchVideos() {
+      try {
+        const API_BASE_URL = "http://localhost:3001/api";
+        const response = await axios.get(`${API_BASE_URL}/videos`);
+        setVideos(response.data);
+      } catch (error) {
+        console.error('Erro ao buscar vídeos:', error);
+      }
+    }
+    async function fetchChannelCovers() {
+      try {
+        const API_BASE_URL = 'http://localhost:3001/api';
+        const response = await axios.get(`${API_BASE_URL}/channels`);
+        setChannelCovers(response.data);
+      } catch (error) {
+        console.error('Erro ao buscar covers dos canais:', error);
+      }
+    }
+
+    fetchChannelCovers();
+    fetchVideos();
+  }, []);
+
   return (
     <section className="grid_section">
       {/* Header */}
@@ -39,46 +69,13 @@ function Home() {
           <h1 class="title_row" style={{ color: '#FF0000' }}>Videos</h1><h1 class="title_row" style={{ color: 'aliceblue' }}>em Alta</h1>
         </div>
         <div class="videos_all">
-            <div name="movie1" class="movie">
-              <a href="#">
-                <img src={thumbs.thumb1}/>
-              </a>
-            </div>
-            <div name="movie1" class="movie">
-              <a href="#">
-                <img src={thumbs.thumb2}/>
-              </a>
-            </div>
-            <div name="movie1" class="movie">
-              <a href="#">
-                <img src={thumbs.thumb3}/>
-              </a>
-            </div>
-            <div name="movie1" class="movie">
-              <a href="#">
-                <img src={thumbs.thumb4}/>
-              </a>
-            </div>
-            <div name="movie1" class="movie">
-              <a href="#">
-                <img src={thumbs.thumb5}/>
-              </a>
-            </div>
-            <div name="movie1" class="movie">
-              <a href="#">
-                <img src={thumbs.thumb6}/>
-              </a>
-            </div>
-            <div name="movie1" class="movie">
-              <a href="#">
-                <img src={thumbs.thumb7}/>
-              </a>
-            </div>
-            <div name="movie1" class="movie">
-              <a href="#">
-                <img src={thumbs.thumb8}/>
-              </a>
-            </div>
+            {videos.map((video) => (
+              <div key={video.id} className="movie">
+                <a href="#">
+                  <img src={video.thumb}/>
+                </a>
+              </div>
+            ))}
         </div>
       </div>
 
@@ -87,36 +84,13 @@ function Home() {
           <h1 class="title_row" style={{ color: '#FF0000' }}>Canais</h1><h1 class="title_row" style={{ color: 'aliceblue' }}>Recomendados</h1>
         </div>
         <div class="covers_all">
-            <div name="cover1" class="cover">
-              <a href="#">
-                <img src={covers.cover1}/>
-              </a>
+          {channelCovers.map((channel) => (
+            <div key={channel.id} className="cover">
+              <Link to={`/channel/${channel.id}`}>
+                <img src={channel.cover}/>
+              </Link>
             </div>
-            <div name="cover1" class="cover">
-              <a href="#">
-                <img src={covers.cover2}/>
-              </a>
-            </div>
-            <div name="cover1" class="cover">
-              <a href="#">
-                <img src={covers.cover3}/>
-              </a>
-            </div>
-            <div name="cover1" class="cover">
-              <a href="#">
-                <img src={covers.cover4}/>
-              </a>
-            </div>
-            <div name="cover1" class="cover">
-              <a href="#">
-                <img src={covers.cover5}/>
-              </a>
-            </div>
-            <div name="cover1" class="cover">
-              <a href="#">
-                <img src={covers.cover6}/>
-              </a>
-            </div>
+          ))}
         </div>
       </div>
       <Footer/>

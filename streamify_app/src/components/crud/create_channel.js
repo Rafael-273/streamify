@@ -1,14 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './cadastro.css';
 import axios from 'axios';
+
 
 function AddChannel() {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
-    cover: null,
-    banner: null,
+    cover: '',
+    banner: '',
+    UserId: '',
   });
+
+  const [users, setUsers] = useState([]); // Lista de usuários disponíveis
+
+  useEffect(() => {
+    async function fetchUsers() {
+      try {
+        const API_BASE_URL = "http://localhost:3001/api";
+        const response = await axios.get(`${API_BASE_URL}/users`);
+        setUsers(response.data); // Defina a lista de usuários
+      } catch (error) {
+        console.error('Erro ao buscar usuários:', error);
+      }
+    }
+
+    fetchUsers();
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value, files } = e.target;
@@ -22,34 +40,30 @@ function AddChannel() {
     e.preventDefault();
 
     try {
-      const formDataToSend = new FormData();
-      formDataToSend.append('name', formData.name);
-      formDataToSend.append('description', formData.description);
-      formDataToSend.append('cover', formData.cover);
-      formDataToSend.append('banner', formData.banner);
-
-      const response = await axios.post('/api/channels', formDataToSend);
+      const API_BASE_URL = "http://localhost:3001/api";
+      const response = await axios.post(`${API_BASE_URL}/add/channel`, formData);
 
       if (response.status === 201) {
-        console.log('Canal criado com sucesso!');
-        // Redirecione para a página de destino após o sucesso (por exemplo, a página inicial)
+        alert('Canal criado com sucesso!');
+        window.location.href = "/";
       }
     } catch (error) {
-      console.error('Erro ao criar o canal:', error);
+      console.error('Erro ao criar o canal:', error.response.data);
+      alert('Erro ao criar o canal');
     }
   };
 
   return (
     <div className="div_create">
       <div className="create_body">
-        <h1>Add Channel</h1>
+        <h1>Add Event</h1>
         <div className="scrool_info">
           <form onSubmit={handleSubmit} encType="multipart/form-data">
             <input
               type="text"
               id="title"
               name="name"
-              placeholder='Digite o nome do canal'
+              placeholder='Digite o nome do evento'
               value={formData.name}
               onChange={handleInputChange}
             />
@@ -60,34 +74,36 @@ function AddChannel() {
               value={formData.description}
               onChange={handleInputChange}
             ></textarea>
-            <label className="input-file-trigger input-cover" htmlFor="cover">
-              Selecione a Capa
-            </label>
             <input
-              type="file"
+              type="text"
               id="cover"
+              className='text'
               name="cover"
-              accept="image/*"
-              hidden
+              placeholder='Digite a url de sua capa'
               onChange={handleInputChange}
             />
-            {formData.cover && (
-              <img src={URL.createObjectURL(formData.cover)} alt="Cover Preview" />
-            )}
-            <label className="input-file-trigger input-banner" htmlFor="banner">
-              Selecione o Banner
-            </label>
             <input
-              type="file"
+              type="text"
               id="banner"
+              className='text'
               name="banner"
-              accept="image/*"
-              hidden
+              placeholder='Digite a url de seu banner'
               onChange={handleInputChange}
             />
-            {formData.banner && (
-              <img src={URL.createObjectURL(formData.banner)} alt="Banner Preview" />
-            )}
+            <select
+              id="userId"
+              name="UserId"
+              className='text'
+              value={formData.userId}
+              onChange={handleInputChange}
+            >
+              <option value="">Selecione um usuário</option>
+              {users.map((user) => (
+                <option key={user.id} value={user.id}>
+                  {user.firstName} {user.lastName}
+                </option>
+              ))}
+            </select>
             <button type="submit">Save</button>
           </form>
         </div>

@@ -14,15 +14,6 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 app.use("/", routes);
 
 
-const corsOptions = {
-  origin: "http://localhost:3000", // Altere para a origem do seu aplicativo React
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true,
-  optionsSuccessStatus: 204,
-};
-
-app.use(cors(corsOptions));
-
 sequelize
   .sync()
   .then(() => {

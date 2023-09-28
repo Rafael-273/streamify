@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './cadastro.css';
 import axios from 'axios';
 
@@ -8,8 +8,24 @@ function AddVideo() {
     description: '',
     thumb: null,
     media_file: null,
-    selectedChannel: '',
+    ChannelId: '',
   });
+
+  const [channels, setChannels] = useState([]); // Lista de canais disponíveis
+
+  useEffect(() => {
+    async function fetchChannels() {
+      try {
+        const API_BASE_URL = "http://localhost:3001/api";
+        const response = await axios.get(`${API_BASE_URL}/channels`);
+        setChannels(response.data); // Defina a lista de canais
+      } catch (error) {
+        console.error('Erro ao buscar canais:', error);
+      }
+    }
+
+    fetchChannels();
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value, files } = e.target;
@@ -23,7 +39,7 @@ function AddVideo() {
     const { value } = e.target;
     setFormData({
       ...formData,
-      selectedChannel: value, // Atualize o estado do canal selecionado
+      ChannelId: value, // Atualize o estado do canal selecionado
     });
   };
 
@@ -31,23 +47,17 @@ function AddVideo() {
     e.preventDefault();
   
     try {
-      // Crie um objeto FormData para enviar os dados do formulário, incluindo arquivos
-      const formDataToSend = new FormData();
-      formDataToSend.append('title', formData.title);
-      formDataToSend.append('description', formData.description);
-      formDataToSend.append('thumb', formData.thumb);
-      formDataToSend.append('selectedChannel', formData.selectedChannel);
-      formDataToSend.append('media_file', formData.media_file);
-  
-      // Envie a solicitação POST para o servidor
-      const response = await axios.post('/api/videos', formDataToSend);
-  
+      const API_BASE_URL = "http://localhost:3001/api";
+      const response = await axios.post(`${API_BASE_URL}/add/video`, formData);
+
       if (response.status === 201) {
-        console.log('Vídeo salvo com sucesso!');
-        // Redirecione para a página de destino após o sucesso (por exemplo, a página inicial)
+        alert('Vídeo criado com sucesso!');
+        window.location.href = "/";
       }
     } catch (error) {
+      alert('Erro ao criar o Vídeo');
       console.error('Erro ao salvar o vídeo:', error);
+      console.log(formData)
     }
   };
 
@@ -72,42 +82,38 @@ function AddVideo() {
               value={formData.description}
               onChange={handleInputChange}
             ></textarea>
-            <label className="input-file-trigger input-thumb" htmlFor="thumb">
-              Selecione a Thumb
-            </label>
             <input
-              type="file"
+              type="text"
               id="thumb"
               name="thumb"
+              placeholder='Digite a url da sua thumb'
+              className='text'
               accept="image/*"
-              hidden
               onChange={handleInputChange}
             />
-            {formData.thumb && (
-              <img src={URL.createObjectURL(formData.thumb)} alt="Thumb Preview" />
-            )}
-            <select
-              id="selectedChannel"
-              name="selectedChannel"
-              value={formData.selectedChannel}
-              onChange={handleChannelChange}
-            >
-              <option value="">Selecione o Canal</option>
-              <option value="canal1">Canal 1</option>
-              <option value="canal2">Canal 2</option>
-            </select>
-
-            <label className="input-file-trigger input-media" htmlFor="media_file">
-              Selecione o Video
-            </label>
             <input
-              type="file"
+              type="text"
               id="media_file"
+              placeholder='Digite a url do seu video'
+              className='text'
               name="media_file"
               accept="video/*"
-              hidden
               onChange={handleInputChange}
             />
+            <select
+              id="selectedChannel"
+              name="ChannelId"
+              className='text'
+              value={formData.ChannelId}
+              onChange={handleChannelChange}
+            >
+              <option value="">Selecione um canal</option>
+              {channels.map((channel) => (
+                <option key={channel.id} value={channel.id}>
+                  {channel.name}
+                </option>
+              ))}
+            </select>
             <button type="submit">Save</button>
           </form>
         </div>

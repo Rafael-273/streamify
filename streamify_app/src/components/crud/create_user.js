@@ -9,7 +9,6 @@ function AddUser() {
     age: '',
     password: '',
     email: '',
-    photo: null,
     telephone: '',
   });
 
@@ -25,24 +24,16 @@ function AddUser() {
     e.preventDefault();
 
     try {
-      const formDataToSend = new FormData();
-      formDataToSend.append('firstName', formData.firstName);
-      formDataToSend.append('lastName', formData.lastName);
-      formDataToSend.append('age', formData.age);
-      formDataToSend.append('password', formData.password);
-      formDataToSend.append('email', formData.email);
-      formDataToSend.append('photo', formData.photo);
-      formDataToSend.append('telephone', formData.telephone);
-
       const API_BASE_URL = "http://localhost:3001/api";
-      const response = await axios.post(`${API_BASE_URL}/users`, formDataToSend);
+      const response = await axios.post(`${API_BASE_URL}add/user`, formData);
 
       if (response.status === 201) {
-        console.log('Usuário criado com sucesso!');
-        // Redirecione para a página de destino após o sucesso (por exemplo, a página inicial)
+        alert('Usuário criado com sucesso!');
+        window.location.href = "/"; 
       }
     } catch (error) {
       console.error('Erro ao criar o usuário:', error);
+      alert('Erro ao criar seu usuário');
     }
   };
 
@@ -97,20 +88,6 @@ function AddUser() {
               value={formData.email}
               onChange={handleInputChange}
             />
-            <label className="input-file-trigger input-photo" htmlFor="photo">
-              Selecione a Foto
-            </label>
-            <input
-              type="file"
-              id="photo"
-              name="photo"
-              accept="image/*"
-              hidden
-              onChange={handleInputChange}
-            />
-            {formData.photo && (
-              <img src={URL.createObjectURL(formData.photo)} alt="Photo Preview" />
-            )}
             <input
               type="text"
               id="telephone"

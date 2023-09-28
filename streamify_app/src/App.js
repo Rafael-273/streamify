@@ -5,6 +5,8 @@ import Menu from './components/menu.js';
 import AddVideo from './components/crud/create_video.js';
 import AddChannel from './components/crud/create_channel.js';
 import AddUser from './components/crud/create_user.js';
+import Channel from './components/channel.js';
+import Play from './components/play.js';
 import './App.css';
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
             <Route path="/addVideo" element={<AddVideo />} />
             <Route path="/addChannel" element={<AddChannel />} />
             <Route path="/addUser" element={<AddUser />} />
+            <Route path="/channel/:id" element={<Channel />} />
+            <Route path="/play/:id" element={<Play />} />
           </Routes>
         </header>
       </div>
