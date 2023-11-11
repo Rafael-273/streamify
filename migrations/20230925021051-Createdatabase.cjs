@@ -26,10 +26,8 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    // Remova a FK de Channel em Video
     await queryInterface.removeColumn('Videos', 'ChannelId');
 
-    // Remova a FK de User em Channel
     await queryInterface.removeColumn('Channels', 'UserId');
   },
 };

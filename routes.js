@@ -1,6 +1,6 @@
 import express from "express";
 import generalControllers from "./controllers/general.js";
-import path from 'path'; // Importe path
+import path from 'path';
 
 const { videoController } = generalControllers;
 const { userController } = generalControllers;
@@ -11,7 +11,6 @@ const { findAllChannels, addChannel, findChannel, updateChannel, deleteChannel} 
 
 const routes = express.Router();
 
-// Rotas de API
 routes.get('/api/videos', findAllVideos);
 routes.post('/api/add/video', addVideo);
 routes.get('/api/video/:id', findVideo);

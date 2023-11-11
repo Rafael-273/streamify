@@ -17,6 +17,7 @@ function Home() {
       try {
         const API_BASE_URL = "http://localhost:3001/api";
         const response = await axios.get(`${API_BASE_URL}/videos`);
+        console.log(response.data)
         setVideos(response.data);
       } catch (error) {
         console.error('Erro ao buscar vídeos:', error);
@@ -71,9 +72,9 @@ function Home() {
         <div class="videos_all">
             {videos.map((video) => (
               <div key={video.id} className="movie">
-                <a href="#">
+                <Link to={`/play/${video.id}`}>
                   <img src={video.thumb}/>
-                </a>
+                </Link>
               </div>
             ))}
         </div>

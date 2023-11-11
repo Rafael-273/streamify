@@ -3,9 +3,10 @@ import { useParams } from 'react-router-dom';
 import './home.css';
 import axios from 'axios';
 import Footer from './footer.js';
+import { Link } from 'react-router-dom';
 
 function Channel() {  
-  const { id } = useParams(); // Obtém o ID do canal da URL
+  const { id } = useParams();
   const [channelData, setChannelData] = useState(null);
   const [channelVideos, setChannelVideos] = useState([]);
 
@@ -35,7 +36,6 @@ function Channel() {
   }, [id]);
 
   if (!channelData || !channelVideos) {
-    // Se os dados do canal ou vídeos ainda não estiverem disponíveis, você pode renderizar uma mensagem de carregamento
     return <p>Carregando...</p>;
   }
 
@@ -71,9 +71,9 @@ function Channel() {
         <div class="videos_all">
           {channelVideos.map((video) => (
             <div key={video.id} className="movie">
-              <a href="#">
+              <Link to={`/play/${video.id}`}>
                 <img src={video.thumb} />
-              </a>
+              </Link>
             </div>
           ))}
         </div>
