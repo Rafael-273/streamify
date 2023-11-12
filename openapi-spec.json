@@ -1,0 +1,251 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Streamify API",
+    "version": "1.0.0",
+    "description": "Streamify Documentation"
+  },
+  "paths": {
+    "/api/videos": {
+      "get": {
+        "summary": "Retorna todos os vídeos.",
+        "responses": {
+          "200": {
+            "description": "Sucesso."
+          }
+        }
+      }
+    },
+    "/api/add/video": {
+      "post": {
+        "summary": "Adiciona um novo vídeo.",
+        "responses": {
+          "200": {
+            "description": "Sucesso."
+          }
+        }
+      }
+    },
+    "/api/video/{id}": {
+      "get": {
+        "summary": "Retorna um vídeo pelo ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID do vídeo.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso."
+          }
+        }
+      }
+    },
+    "/api/videos/{id}": {
+      "put": {
+        "summary": "Atualiza um vídeo pelo ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID do vídeo.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso."
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deleta um vídeo pelo ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID do vídeo.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso."
+          }
+        }
+      }
+    },
+    "/api/users": {
+      "get": {
+        "summary": "Retorna todos os usuários.",
+        "responses": {
+          "200": {
+            "description": "Sucesso."
+          }
+        }
+      }
+    },
+    "/api/add/user": {
+      "post": {
+        "summary": "Adiciona um novo usuário.",
+        "responses": {
+          "200": {
+            "description": "Sucesso."
+          }
+        }
+      }
+    },
+    "/api/users/{id}": {
+      "get": {
+        "summary": "Retorna um usuário pelo ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID do usuário.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso."
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualiza um usuário pelo ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID do usuário.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso."
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deleta um usuário pelo ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID do usuário.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso."
+          }
+        }
+      }
+    },
+    "/api/channels": {
+      "get": {
+        "summary": "Retorna todos os canais.",
+        "responses": {
+          "200": {
+            "description": "Sucesso."
+          }
+        }
+      }
+    },
+    "/api/add/channel": {
+      "post": {
+        "summary": "Adiciona um novo canal.",
+        "responses": {
+          "200": {
+            "description": "Sucesso."
+          }
+        }
+      }
+    },
+    "/api/channels/{id}": {
+      "get": {
+        "summary": "Retorna um canal pelo ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID do canal.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso."
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualiza um canal pelo ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID do canal.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso."
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deleta um canal pelo ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID do canal.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso."
+          }
+        }
+      }
+    }
+  },
+  "components": {},
+  "tags": []
+}
