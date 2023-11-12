@@ -1,8 +1,10 @@
 import { User, Video, Channel } from "../models/generalModel.js";
 
-function findAllUsers(req, res) {
-  User.findAll().then((result) => res.json(result));
-}
+  function findAllUsers(req, res) {
+    User.findAll({
+      attributes: ['id', 'firstName', 'lastName', 'email', 'telephone', 'createdAt', 'updatedAt'],
+    }).then((result) => res.json(result));
+  }
 
 function findUser(req, res) {
   User.findByPk(req.params.id).then((result) => {
@@ -48,34 +50,54 @@ function addUser(req, res) {
     age,
     password,
     email,
-    photo,
+    photo: photo || '',
     telephone,
-  }).then((result) => res.json(result));
+  })
+    .then((result) => res.status(201).json(result))
+    .catch((error) => {
+      console.error('Erro ao criar o usuário:', error);
+      res.status(500).json({ error: 'Erro interno do servidor' });
+    });
 }
 
 function addVideo(req, res) {
-    const { title, description, thumb, banner, favorited, media_file } = req.body;
-  
-    Video.create({
-      title,
-      description,
-      thumb,
-      banner,
-      favorited,
-      media_file,
-    }).then((result) => res.json(result));
+  const { title, description, thumb, banner, favorited, media_file, ChannelId } = req.body;
+
+  Video.create({
+    title,
+    description,
+    thumb,
+    banner,
+    favorited,
+    media_file,
+    ChannelId,
+  })
+    .then((result) => res.status(201).json(result))
+    .catch((error) => {
+      console.error('Erro ao criar o vídeo:', error);
+      res.status(500).json({ error: 'Erro interno do servidor' });
+    });
 }
 
 function addChannel(req, res) {
-    const { name, description, cover, banner } = req.body;
-  
-    Channel.create({
-      name,
-      description,
-      cover,
-      banner,
-    }).then((result) => res.json(result));
+  const { name, description, cover, banner, UserId } = req.body;
+  const sanitizedCover = cover || '';
+  const sanitizedBanner = banner || '';
+
+  Channel.create({
+    name,
+    description,
+    cover: sanitizedCover,
+    banner: sanitizedBanner,
+    UserId,
+  })
+    .then((result) => res.status(201).json(result))
+    .catch((error) => {
+      console.error('Erro ao criar o canal:', error);
+      res.status(500).json({ error: 'Erro interno do servidor' });
+    });
 }
+
 
 async function updateUser(req, res) {
   const userId = req.params.id;

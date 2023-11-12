@@ -1,8 +1,42 @@
 import React from 'react';
 import './home.css'
-import minhaImagem from '../assets/background.png';
+import banner from '../assets/banner.jpg';
+import { thumbs } from '../assets/thumbs/thumbs.js'
+import { covers } from '../assets/covers/covers.js'
+import Footer from './footer.js';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function Home() {
+  const [videos, setVideos] = useState([]);
+  const [channelCovers, setChannelCovers] = useState([]);
+
+  useEffect(() => {
+    async function fetchVideos() {
+      try {
+        const API_BASE_URL = "http://localhost:3001/api";
+        const response = await axios.get(`${API_BASE_URL}/videos`);
+        console.log(response.data)
+        setVideos(response.data);
+      } catch (error) {
+        console.error('Erro ao buscar vídeos:', error);
+      }
+    }
+    async function fetchChannelCovers() {
+      try {
+        const API_BASE_URL = 'http://localhost:3001/api';
+        const response = await axios.get(`${API_BASE_URL}/channels`);
+        setChannelCovers(response.data);
+      } catch (error) {
+        console.error('Erro ao buscar covers dos canais:', error);
+      }
+    }
+
+    fetchChannelCovers();
+    fetchVideos();
+  }, []);
+
   return (
     <section className="grid_section">
       {/* Header */}
@@ -11,9 +45,9 @@ function Home() {
         <div className="grid_banner">
           <div></div>
           <div className="content">
-            <h1 className="movieTitle">Canal do Rafa</h1>
+            <h1 className="movieTitle">Streamify</h1>
             <p className="descriptionBanner description">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+            Você está prestes a entrar em um mundo de vídeos incríveis e conteúdo fascinante. O Streamify é a plataforma definitiva de vídeos que oferece uma experiência de entretenimento como nenhuma outra. Aqui, você pode explorar, descobrir e compartilhar vídeos dos mais variados tipos, tudo em um só lugar.
             </p>
 
             <div className="buttons">
@@ -28,8 +62,39 @@ function Home() {
           <div></div>
         </div>
         <div className="banner--fadeLeft"></div>
-        <img src={minhaImagem} className="image img_url" alt="Banner" />
+        <img src={banner} className="image img_url" alt="Banner" />
       </div>
+
+      <div class="videos">
+        <div style={{ display: 'flex'}}>
+          <h1 class="title_row" style={{ color: '#FF0000' }}>Videos</h1><h1 class="title_row" style={{ color: 'aliceblue' }}>em Alta</h1>
+        </div>
+        <div class="videos_all">
+            {videos.map((video) => (
+              <div key={video.id} className="movie">
+                <Link to={`/play/${video.id}`}>
+                  <img src={video.thumb}/>
+                </Link>
+              </div>
+            ))}
+        </div>
+      </div>
+
+      <div class="videos">
+        <div style={{ display: 'flex'}}>
+          <h1 class="title_row" style={{ color: '#FF0000' }}>Canais</h1><h1 class="title_row" style={{ color: 'aliceblue' }}>Recomendados</h1>
+        </div>
+        <div class="covers_all">
+          {channelCovers.map((channel) => (
+            <div key={channel.id} className="cover">
+              <Link to={`/channel/${channel.id}`}>
+                <img src={channel.cover}/>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+      <Footer/>
     </section>
   );
 }

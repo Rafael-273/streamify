@@ -1,0 +1,185 @@
+.div_create {
+    width: 100vw;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+#title {
+    margin-top: 10px;
+    width: 100%;
+    padding: 15px;
+    border-radius: 6px;
+    border: 0;
+}
+
+.text {
+    margin-top: 10px;
+    width: 100%;
+    padding: 15px;
+    border-radius: 6px;
+    border: 0;
+}
+
+#description {
+    margin-top: 10px;
+    width: 100%;
+    padding: 15px;
+    border-radius: 6px;
+    border: 0;
+}
+
+#selectedChannel {
+    height: 50px;
+    width: 100%;
+    color: white;
+    background-color: #e50914;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 17.5px;
+    border: none;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    transition: 0.5s;   
+    cursor: pointer;
+}
+
+.scrool_info {
+    max-height: 45vh;
+    overflow: auto;
+}
+
+.create_body {
+    background-color: rgb(27, 27, 27);
+    padding: 40px;
+    border-radius: 20px;
+    width: 30vw;
+}
+
+.create_body h1 {
+    text-align: center;
+    font-size: 40px;
+    color: aliceblue;
+    font-weight: bold;
+}
+
+.create_body button {
+    height: 50px;
+    width: 100%;
+    color: white;
+    background-color: #e50914;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    transition: 0.5s;   
+    cursor: pointer;
+}
+
+.search_button {
+    margin: 7px 0 10px 0 !important;
+}
+
+.research_button {
+    margin: 0px 0 8px 0 !important;
+}
+
+.title_smart {
+    margin-bottom: 4%;
+}
+
+.search_smart_button {
+    background-color: #810d0d !important;
+    margin: 7px 0 10px 0 !important;
+}
+
+.research_smart_button {
+    background-color: #810d0d !important;
+    margin: 0px 0 8px 0 !important;
+}
+
+.create_body button:hover {
+    background-color: #fc1722;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+label {
+    color: white;
+    margin: 30px 0;
+}
+
+textarea {
+    border: 0;
+    padding: 10px 0 0 10px;
+    background-color: white;
+    border-radius: 6px;
+    height: 100px;
+    margin: 5px 0;
+    min-width: 100%;
+    resize: none;
+}
+
+.input_text {
+    border: 0;
+    padding-left: 10px;
+    margin: 5px 0;
+    background-color: white;
+    border-radius: 6px;
+    height: 50px;
+    min-width: 100%;
+}
+
+.input_button {
+    border: 0;
+    margin: 0;
+    cursor: pointer;
+    width: 100%;
+    padding: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: aliceblue;
+}
+
+  .input-file-trigger {
+    display: block;
+    padding: 14px 20px 10px 20px;
+    min-height: 50px;
+    width: 100%;
+    background-color: #d1000a;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+    margin: 10px 0;
+  }
+  
+  .input-file-trigger:hover {
+    background-color: #f1232d;
+    color: #fff;
+  }
+
+  .error-message{
+    color: white;
+    background-color: #d1000a;
+    padding: 10px;
+    margin: 10px 0;
+  }
+
+  @media (max-width: 1090px) {
+    .create_body {
+        background-color: rgb(27, 27, 27);
+        padding: 40px;
+        border-radius: 20px;
+        width: 70vw;
+    }
+  }

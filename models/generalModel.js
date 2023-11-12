@@ -118,6 +118,6 @@ const Channel = sequelize.define("Channel", {
 
 
 Channel.belongsTo(User);
-User.belongsTo(Channel);
+Video.belongsTo(Channel);
 
 export { User, Channel, Video };
